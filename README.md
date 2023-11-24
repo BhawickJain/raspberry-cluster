@@ -14,6 +14,8 @@
 - [ ] node clusters to serve a function
 
 
+- [ ] Is this a super computer or a just a compute cluster?
+
 - [Python and SLURM](https://www.youtube.com/watch?app=desktop&v=4lKcou1-3OY)
 
 - 2 x 35.00 [Raspberry Pi 4 Model B - 2GB](https://www.ebay.co.uk/itm/404593051397?hash=item5e33a00705:g:HDIAAOSw-o9lQ6lb&amdata=enc%3AAQAIAAAAwHEosaBESy1JFxpl6PKudeJkcvaXN9vvMQMM%2BeJbMpz8Z%2BQ%2F6XclW16pArmxERKuTTImPDmMrBI7bfetDYy%2Fzr5s53CwR3tnMmyOsVZBURaW1UGHDkUMJJ3P8FzDG6jkHH6hrdZkKEACnJfCJGTC3XFLv1oyiLi%2FbJcYpa4P7h0G34NY%2FQcd%2FgzvtSk4RtIxjfmaCQT%2B1NnsZCHAmmlaTvbwf6hRYff8xGZNlRKj%2BgyqPHgOqnQvjvVWZUNAgEm55w%3D%3D%7Ctkp%3ABk9SR9aLh52AYw)
