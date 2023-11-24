@@ -45,6 +45,10 @@ __strictly optional__
 
 ### Parts
 
+- [raspberry pi 4 model b, 2gb](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/specifications/): ideally 4 gb but its double the price, ideally Pi 5 but that's astronomical for current project scope
+- [poe hat](https://www.raspberrypi.com/products/poe-hat/): enables pi's to be powered via ethernet, significantly reducing material and clutter with a minor penality on clock speed (1.5GHz instead of 1.8GHz) `[ref needed]`
+  - [additional details](https://www.raspberrypi.com/news/announcing-the-raspberry-pi-poe-hat/)
+
 ### Assembly
 
 ### Software Setup
