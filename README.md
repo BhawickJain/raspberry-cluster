@@ -56,6 +56,27 @@ __strictly optional__
 ### Assembly
 
 ### Software Setup
+  - [Raspbery Pi OS](https://www.raspberrypi.com/software/)  
+  - [Etcher](https://etcher.balena.io/#download-etcher)
 
 
-### 
+### References
+- [Power Over Ethernet (PoE and PoE+)](https://www.youtube.com/watch?v=dVq9jHwmCrY)
+  - Power Source Equipment (PSE) like a PoE switch
+  - you can use a PoE injector
+  - PoE (203) 12.95W and PoE+ (25.5W), PoE+ backwards compatible
+- [Raspberry Pi's new PoE+ HAT](https://www.youtube.com/watch?v=XZ08QKAbBoU)
+  - recommends sticking with the original PoE Hat as the new one has more power
+    draw without immediate benefits for server/compute node architectures
+  - [Raspberry Pi PoE+ HAT - eBay](https://www.ebay.co.uk/itm/134181695050?hash=item1f3dda2e4a:g:ubsAAOSw1pdi3pYf&amdata=enc%3AAQAIAAAA8BE76UfPjtzXWUEOBv3vMEXDERnkeGJAgFpH%2BSzkGCQrqPoZLX1lzORkKIzm6Qci5Gt8cgw0dQ1EYq0vkl3EyZ%2FADEvChIapOSGC730XMdUjn8T6Q8A5eNCUlXqT3%2BfW5lwsRKuq2kGQozBwCEJwVJbZY0odkmrVUIZ9JNyEjn33G4PRZ7ku%2BYut4BJIhleqC2yGglLK6q6ova0HosCxfF%2B7XAjkfa9cs8q3B56yfcJplBUwCSD2%2FCIsQEGs4hJmw5hn9tDrR4MauAmsgaCA3uoyuIshAmmTrkMj%2B1TwSb%2B2Qj3uB5IJGqsydj5HYDTj%2Bw%3D%3D%7Ctkp%3ABk9SR9jshsKBYw)
+  - it is slightly bigger which means it might not fit a Pi Case or slide into a rack as easily
+  - Basically if you run into a problems with the orignal PoE hat _then_ buy it.
+
+### Aside References and inspirations from conferences and lectures
+- [FPGA Accelerators at JP Morgan Chase](https://www.youtube.com/watch?v=9NqX1ETADn0) [slides](http://web.stanford.edu/class/ee380/Abstracts/110511-slides.pdf)
+- [CFD, PDEs, and HPC: A Thirty-Year Perspective - Paul Fischer, UI-UC](https://www.youtube.com/watch?v=46AwtHqKFb8)
+- [GPUs to Mars: Full-Scale simulations of SpaceX's Mars Rocket Engine](https://www.youtube.com/watch?v=vYA0f6R5KAI)
+- [An Affordable Supercomputing Testbed based on Rasberyy Pi](https://www.youtube.com/watch?v=78H-4KqVvrg)
+- [Scientific Computing with Intel Xeon Phi Coprocessors](https://www.youtube.com/watch?v=fq_6ckPDNxs)
+- [Introduction to HPC -- Andrew Turner (University of Edinburgh](https://www.youtube.com/watch?v=i3cpkJ6iszk)
+
