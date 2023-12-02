@@ -59,6 +59,29 @@ __strictly optional__
   - [Raspbery Pi OS](https://www.raspberrypi.com/software/)  
   - [Etcher](https://etcher.balena.io/#download-etcher)
 
+### What I learned
+ - when setting `nobody.nogroup`, set `nobody:nogroup` instead
+ - when setting an ip range is it always 192.168.Y.0/24, where Y is a subnet on
+   my network its 5 but is usually 1. 
+ - passwordless SSH is might easier than I had imagined
+   - each machine needs to have an RSA key ready. You place exachange the
+     RSA.pub and it is set as a line on `~/.ssh/authorised_keys`
+   - when the user machine connects to the remote machine, the username you
+     write determines which `authorised_keys` is checked
+   - if the RSA.pub matches the entry in the remote machine's user then it will
+     connect, if not it is not authorised
+   - during the raspberry pi bootfs flashing you setup the user machine's
+     RSA.pub under a default user you've created
+ - you can connect to a remote machine that is in the Local Area Network with
+   `<hostname>.local` which sends a broadcast to all machines to reply if their
+   hostname matches the call [^se_local]. This is nice and easy, though it is
+   best and safer if you map the remote machine hostname with the IP address in
+   the hosts file of your local machine.
+ - you can safely shutdown your nodes with the `sudo shutdown -h now` command [^se_turn-off-pi].
+   - be sure to send the shutdown signal to main node last (i.e. node01)
+   - this ensures NFS server does not disappear on the follow nodes leading
+     them to wait until timeout
+ - if you can run sudo you have root priveleges
 
 ### References
 - [Power Over Ethernet (PoE and PoE+)](https://www.youtube.com/watch?v=dVq9jHwmCrY)
@@ -80,3 +103,8 @@ __strictly optional__
 - [Scientific Computing with Intel Xeon Phi Coprocessors](https://www.youtube.com/watch?v=fq_6ckPDNxs)
 - [Introduction to HPC -- Andrew Turner (University of Edinburgh](https://www.youtube.com/watch?v=i3cpkJ6iszk)
 
+
+### Footnotes
+- [^se_local]: [What does ".local" do? -- Ubuntu Stack Exchange](https://askubuntu.com/questions/4434/what-does-local-do)
+- [^rpi-docs_passwordless-ssh]: [Passwordless SSH Access -- Raspberry Pi Docs](https://www.raspberrypi.com/documentation/computers/remote-access.html#passwordless-ssh-access)
+- [^se_turn-off-pi]: [How do I turn off my raspberry pi -- Raspberry Pi Stack Exchange](https://raspberrypi.stackexchange.com/a/383)
