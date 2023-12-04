@@ -117,6 +117,17 @@ __strictly optional__
   - since SSH is setup as Passwordless, password auth is disabled
   - so it is a matter of convenience and sanity checking
 
+### TODO
+- [x] ensure master is not part of the compute cluster
+- [ ] usb stick is unreadable on my mac, is the format wrong?
+      > uses `ext4` which the mac cannot read, try formatting with a different
+      > filesystem format that still works with `nfs`
+- [x] figure out how to sync files between master and my mac: secure copy, rsync, syncthing, 
+      > `scp` is very niec when passwordless ssh is setup
+- [x] run the workloads only on node 2 to see if freezing happens then
+      > freezing happens because of job overflowig in memory triggering the killing
+      > of `slurmd` sub-processes. It leaves the node in a bad unresponsive state
+      > as the memory is still not freed (potentially a `cgroup.conf` issue)
 
 ### References
 - [Power Over Ethernet (PoE and PoE+)](https://www.youtube.com/watch?v=dVq9jHwmCrY)
