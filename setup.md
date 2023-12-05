@@ -87,6 +87,36 @@ ssh-copy-id <user-in-worker-node>@<worker-node-hostname>
 
 ## setup network file system
 
+__format drive__
+- [ ] change `mkfs.ext4` to `mkfs.exfat`, so both linux and macOS can read the
+  usb drive
+```bash
+sudo mkfs.ext4 /dev/sda1
+```
+
+__create a mount directory__
+```bash
+sudo mkdir /clusterfs
+sudo chown nobody.nogroup -R /clusterfs
+```
+
+__setup automatic mounting__
+
+```bash
+# get blkid and find 'sda' which should be usb stick
+blkid /dev/sda*
+```
+
+__identify the external drive__
+- what is `sdal`?
+- what is mounting?
+- what does `sda` stand for?
+Everything is a file, including devices which live inside the `/dev` folder.
+Roughly `sda` refers to storage device 'a', the number following this calleda a partition.
+[ref](https://superuser.com/questions/558156/what-does-dev-sda-in-linux-mean)
+Very generally speaking, 'sd' is usually given to a removable storage device.
+You want to use a removable storage device for the network file system.
+
 
 ## setup munge and slurm
 
