@@ -116,6 +116,8 @@ __strictly optional__
   - instead this is there to perform a manual check via SSH to munge/unmunge
   - since SSH is setup as Passwordless, password auth is disabled
   - so it is a matter of convenience and sanity checking
+- `uptime` command gives you how long the unix system has been running since
+  last startup
 
 ### TODO
 - [x] ensure master is not part of the compute cluster
