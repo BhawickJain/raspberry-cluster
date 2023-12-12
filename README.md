@@ -132,6 +132,8 @@ __strictly optional__
       > as the memory is still not freed (potentially a `cgroup.conf` issue)
 
 ### References
+- [Jeff Geerling's Dramble Raspberry Pi 3 Cluster](https://github.com/geerlingguy/raspberry-pi-dramble)
+- [Jeff Geerling Raspberry Pi Cluster Docs](https://github.com/geerlingguy/pi-cluster) [version 1](https://github.com/geerlingguy/turing-pi-cluster)
 - [Power Over Ethernet (PoE and PoE+)](https://www.youtube.com/watch?v=dVq9jHwmCrY)
   - Power Source Equipment (PSE) like a PoE switch
   - you can use a PoE injector
