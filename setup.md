@@ -1,3 +1,6 @@
+## Software Setup
+  - [Raspberry Pi OS](https://www.raspberrypi.com/software/) to flash the MicroSD cards
+
 ## bootfs flashing
 
 ### passwordless key-based ssh
