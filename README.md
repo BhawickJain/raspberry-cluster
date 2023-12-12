@@ -17,6 +17,8 @@
 
 - [Python and SLURM](https://www.youtube.com/watch?app=desktop&v=4lKcou1-3OY)
 
+[Costs breakdown](/costs.md)
+
 ## Build Plan
 
 - [ ] create a build plan to make it certain how exactly you will build and use it.
