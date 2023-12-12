@@ -114,6 +114,11 @@
       > of `slurmd` sub-processes. It leaves the node in a bad unresponsive state
       > as the memory is still not freed (potentially a `cgroup.conf` issue)
 
+## Benchmarking
+- Big topic that can't be left out, TBC
+- [Benchmarking a Turing Pi Cluster by Jeff Geerling](https://www.youtube.com/watch?v=IoMxpndlDWI)
+
+
 ### References
 - [Jeff Geerling's Dramble Raspberry Pi 3 Cluster](https://github.com/geerlingguy/raspberry-pi-dramble)
 - [Jeff Geerling Raspberry Pi Cluster Docs](https://github.com/geerlingguy/pi-cluster) [version 1](https://github.com/geerlingguy/turing-pi-cluster)
