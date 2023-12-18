@@ -321,15 +321,21 @@ srun --nodes=3 hostname
 # expect to get nodes 02-04, we excluded node 01 from the partition
 ```
 
-## Anaconda setup
+## Micromamba (Conda) setup
 
 Anaconda is a versatile package manager for installing complex scientific
 python and r packages, it is widely used in the data, science and finance
-communities
+communities. However it is a little heavy, so I have opted for micromamba
+which is single statically linked binary. Even miniconda is little heavy, I
+have had a good time with it so far.
 
-```bash
-# this script will iteratively install micromamba
-"${SHELL}" <(curl -L micro.mamba.pm/install.sh)
+See [micromamba installation page](https://mamba.readthedocs.io/en/latest/installation/micromamba-installation.html).
+
+```bash # this script will iteratively install micromamba 
+srun --nodes=3 bash -c '"${SHELL}" <(curl -L micro.mamba.pm/install.sh)'
+
+# the script is interactive when install a terminal is attached, otherwise
+#will quiet instally as intended here
 
 # run
 srun --nodes=3 sudo ~/.local/bin/micromamba --version
