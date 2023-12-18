@@ -90,9 +90,32 @@ ssh-copy-id <user-in-worker-node>@<worker-node-hostname>
 
 ## setup network file system
 
+__identify the external drive__
+<details>
+<summary> <b>What is <code>sdal</code>, mounting and <code>sda</code>?</b> </summary>
+
+> Everything is a file, including devices which live inside the `/dev` folder.
+> Roughly `sda` refers to storage device 'a', the number following this calleda
+> a partition
+> [[ref](https://superuser.com/questions/558156/what-does-dev-sda-in-linux-mean)].
+> Very generally speaking, 'sd' is usually given to a removable storage device.
+> You want to use a removable storage device for the network file system.
+
+</details>
+
+Plug in the USB stick into `node01` which will act at the network file storage
+
+```bash
+# run the following command on your main node
+lsblk
+
+NAME        MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
+sda           8:0    1  3.8G  0 disk               << USB stick
+└─sda1        8:1    1  3.8G  0 part /clusterfs    << partition 1
+...
+```
+
 __format drive__
-- [ ] change `mkfs.ext4` to `mkfs.exfat`, so both linux and macOS can read the
-  usb drive
 ```bash
 sudo mkfs.ext4 /dev/sda1
 ```
@@ -100,27 +123,80 @@ sudo mkfs.ext4 /dev/sda1
 __create a mount directory__
 ```bash
 sudo mkdir /clusterfs
-sudo chown nobody.nogroup -R /clusterfs
 ```
 
-__setup automatic mounting__
+__get the flash drive's UUID__
 
 ```bash
 # get blkid and find 'sda' which should be usb stick
 blkid /dev/sda*
+
+# get the UUID
+/dev/sda1: UUID="5d72d438-90bc-4cd9-9136-d72863c20934"
 ```
 
-__identify the external drive__
-- what is `sdal`?
-- what is mounting?
-- what does `sda` stand for?
-Everything is a file, including devices which live inside the `/dev` folder.
-Roughly `sda` refers to storage device 'a', the number following this calleda a partition.
-[ref](https://superuser.com/questions/558156/what-does-dev-sda-in-linux-mean)
-Very generally speaking, 'sd' is usually given to a removable storage device.
-You want to use a removable storage device for the network file system.
+__give everyone read/write/execute permissions to /clusterfs
+
+Not exactly a great idea when there are multiple users, but fine for now just
+for me
+```bash
+sudo chown nobody:nogroup -R /clusterfs
+sudo chmod 777 -R /clusterfs
+```
+
+__setup automatic monting of drive__
+
+On boot you the flash drive to be automatically mounted as `/clusterfs`.
+
+```bash
+sudo nano /etc/fstab
+
+# the following with your drive's UUID
+UUID=<your-drive-uuid>        /clusterfs      ext4    defaults          0       2
+
+# mount the drive now
+sudo mount -a
+```
+
+__set loose permissions__
+
+```bash
+sudo chown nobody:nogroup -R /clusterfs
+sudo chmod 766 -R /clusterfs/
+
+__Export NFS Share__
+
+```bash
+sudo apt install nfs-kernel-server -y
+vi /etc/exports
+
+## append the following 
+## for example if your nodes sit on 192.168.1.XXX then set
+## 192.168.1.0/24
+/clusterfs <ip-address-schema>.0/24(rw,sync,no_root_squash,no_subtree_check)
+
+# rw - client has read / write access
+# sync - sync occurs on every transaction
+# no-root-squah - root users on client nodes can write files with root permissions
+# no_subtree_check - prevent errors caused when one node write and another reads at the same time
 
 
+# update the NFS kernele server
+sudo exportfs -a
+```
+
+__Mount NFS Share on the worker nodes__
+
+```bash
+sudo apt install nfs-common -y
+sudo mkdir /clusterfs
+sudo chown nobody:nogroup /clusterfs/
+sudo chmod -R 777 /clusterfs/
+
+# setup automatic mounting of the nfs share to local /clusterfs
+sudo vi /etc/fstab
+<node01-ip-addr>:/clusterfs  /clusterfs   nfs     defaults          0       0
+```
 ## setup munge and slurm
 
 ### install slurm
