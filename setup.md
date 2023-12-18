@@ -217,15 +217,15 @@ systemctl daemon-reload
 
 ## setup munge and slurm
 
-### install slurm
+### main node
+
+#### installing munge and slurm
 
 ```bash
+# install slurm controller and munge
 sudo apt install slurm-wlm -y
 ```
-
-Install slurm on main and workers nodes. This installs both slurm daemon, slurm
-controller daemon and munge. Munge is how the controller on main communicates
-to the worker nodes.
+### configuring slurm
 
 
 <details> 
@@ -241,7 +241,14 @@ sudo mv slurm.conf.simple slurm.conf
 ```
 </details>
 
-### copy .conf to workers
+```bash
+# copy slurm config and munge.key to clusterfs
+mkdir /clusterfs/worker-config/
+sudo cp slurm.conf cgroup* /clusterfs/worker-config/
+sudo cp /etc/munge/munge.key /clusterfs/worker-config/
+```
+
+### worker nodes
 
 ```bash
 # install SLURM Client
@@ -253,10 +260,12 @@ sudo cp /clusterfs/worker-config/munge/munge.key /etc/munge/munge.key
 sudo cp /clusterfs/worker-config/slurm/slurm.conf /etc/slurm/slurm.conf
 sudo cp /clusterfs/worker-config/slurm/cgroup* /etc/slurm/
 ```
+- [ ] TODO the slurm and munge.key are basically shared across all nodes, could
+  they be symlinked with stow?
 
 Search nod01/02/... and change their ip addr
 
-### start munge and slurm services
+#### start munge and slurm services
 
 __Enable and run munge__
 
@@ -285,7 +294,8 @@ Please note you need to have setup passwordless SSH between main and workers.
 
 __something munged in node02 can be unmunged by node01__
 ```bash
-ssh <uname>@<node02-ip-address> munge -n | unmunge | grep STATUS
+# from node01, ssh into nodes02-04, example below
+ssh admin@node02 munge -n | unmunge | grep STATUS
 
 # expected result like
 Success (0)
