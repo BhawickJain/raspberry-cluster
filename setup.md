@@ -331,6 +331,8 @@ have had a good time with it so far.
 
 See [micromamba installation page](https://mamba.readthedocs.io/en/latest/installation/micromamba-installation.html).
 
+You can examine the [script here](https://raw.githubusercontent.com/mamba-org/micromamba-releases/main/install.sh).
+
 ```bash # this script will iteratively install micromamba 
 srun --nodes=3 bash -c '"${SHELL}" <(curl -L micro.mamba.pm/install.sh)'
 
