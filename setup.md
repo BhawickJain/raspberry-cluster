@@ -196,7 +196,25 @@ sudo chmod -R 777 /clusterfs/
 # setup automatic mounting of the nfs share to local /clusterfs
 sudo vi /etc/fstab
 <node01-ip-addr>:/clusterfs  /clusterfs   nfs     defaults          0       0
+
+# mount the NFS share
+sudo mount -a
+
+# you may need to reload the fstab daemon like so
+systemctl daemon-reload
 ```
+1. on your main node:
+    - identify the external drive
+    - format the drve to `ext4`
+    - create the mount directory
+    - get the drive's UUID
+    - change permissions on /clusterfs
+    - setup automatic mounting of the drive
+    - set loose permissions one more time on /clusterfs
+    - export the NFS Share
+2. for each worker node:
+   - mount the NFS Share on the worker nodes
+
 ## setup munge and slurm
 
 ### install slurm
