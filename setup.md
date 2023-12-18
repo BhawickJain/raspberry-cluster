@@ -227,10 +227,10 @@ Install slurm on main and workers nodes. This installs both slurm daemon, slurm
 controller daemon and munge. Munge is how the controller on main communicates
 to the worker nodes.
 
-### copy .conf to workers
 
-<detail> 
-<summary> &nbsp; __if you want a fresh config follow this__ </summary>
+<details> 
+<summary> :sparkles: <b>if you want a fresh config follow this</b> </summary>
+
 ```bash
 # copy, extract and name config to /etc/slurm
 cd /etc/slurm
@@ -239,17 +239,19 @@ sudo cp /usr/share/doc/slurm-client/examples/slurm.conf.simple.gz .
 sudo gzip -d slurm.conf.simple.gz 
 sudo mv slurm.conf.simple slurm.conf
 ```
-</detail>
+</details>
 
+### copy .conf to workers
 
 ```bash
-# copy munge key to worker to be able to unmunge messages
-sudo cp /clusterfs/munge.key /etc/munge/munge.key
+# install SLURM Client
+sudo apt install slurmd slurm-client -y
 
+# copy munge key to worker to be able to unmunge messages
 # copy all slurm configs to worker slurm
-sudo cp /clusterfs/slurm.conf /etc/slurm/slurm.conf
-sudo cp /clusterfs/cgroup* /etc/slurm/
-
+sudo cp /clusterfs/worker-config/munge/munge.key /etc/munge/munge.key
+sudo cp /clusterfs/worker-config/slurm/slurm.conf /etc/slurm/slurm.conf
+sudo cp /clusterfs/worker-config/slurm/cgroup* /etc/slurm/
 ```
 
 Search nod01/02/... and change their ip addr
@@ -262,6 +264,7 @@ __Enable and run munge__
 sudo systemctl enable munge
 sudo systemctl start munge
 ```
+
 __Enable and run slurm daemon__
 ```bash
 sudo systemctl start slurmd
@@ -273,8 +276,8 @@ sudo systemctl enable slurmctld
 sudo systemctl start slurmctld
 ```
 
-Enable munge, slurm daemon and slurm controller daemon on the main node.
-Then, enable munge and slurm daemon on the worker nodes.
+1. Enable munge, slurm daemon and slurm controller daemon on the main node.
+2. Then, enable munge and slurm daemon on the worker nodes.
 
 ### test munge
 
@@ -286,12 +289,25 @@ ssh <uname>@<node02-ip-address> munge -n | unmunge | grep STATUS
 
 # expected result like
 Success (0)
+
+# if there is a credential error
+# reboot your main and worker nodes
+sudo reboot
 ```
+
+Now enable and start the the `slurmd`
 
 __reboot all nodes if necessary__
 Ensure main node is last as the `nfs` daemon will have to timeout leading to an
 awkward wait
 ```bash
 sudo reboot
+```
+
+__smoke test job__
+```bash
+# let's get the hostname for each node in the partition
+srun --nodes=3 hostname
+# expect to get nodes 02-04, we excluded node 01 from the partition
 ```
 
