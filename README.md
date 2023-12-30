@@ -1,8 +1,8 @@
 # Raspberry Pi Compute Cluster
 
-For Christmas 2023 :christmas_tree:, so I decided to treat myself with
+For Christmas 2023 :christmas_tree:, I decided to treat myself with
 creating a Raspberry Pi Cluster. This repository documents my experience
-building it, and the fun I have been up with it.
+building it, and the fun I have been up to.
 
 
 Please see pages:

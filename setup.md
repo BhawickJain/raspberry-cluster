@@ -385,7 +385,7 @@ sudo mount -a
 ```
 
 You may need to restart `systemctl daemon-reload` when prompted. Also if the
-node throws a `can't UUID=...` error, [get the flash drive's UUID
+node throws a `can't find UUID=...` error, [get the flash drive's UUID
 again](#get-the-flash-drives-uuid) as it may have changed.
 
 ##### Set loose permissions
