@@ -1,0 +1,17 @@
+#! /bin/bash
+#SBATCH -n 14
+#SBATCH --partition=all
+#SBATCH --time=0-00:02:00
+#SBATCH -o result.out
+#SBATCH --export=ALL
+
+# you must export ALL otherwise environment variables related to OpenMPI will
+# not be passed through the sub-processes leading to ORTE Daemon failures
+
+# n is 14 because 2 cores are reserved for main node's administration work 
+
+cd $SLURM_SUBMIT_DIR
+
+# perform job
+time bash JOB
+

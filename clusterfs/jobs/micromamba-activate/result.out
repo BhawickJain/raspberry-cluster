@@ -1,0 +1,36 @@
+job name: Hello mpi4py
+date: Fri 29 Dec 17:58:09 GMT 2023
+
+
+python interpreter path
+-----------------------
+/clusterfs/environments/python-mpi4py/bin/python
+
+
+helloworld
+----------
+Hello, World! I am process  0 of 14 on node01.
+Hello, World! I am process  1 of 14 on node01.
+Hello, World! I am process  2 of 14 on node02.
+Hello, World! I am process  3 of 14 on node02.
+Hello, World! I am process  4 of 14 on node02.
+Hello, World! I am process  5 of 14 on node02.
+Hello, World! I am process  6 of 14 on node03.
+Hello, World! I am process  7 of 14 on node03.
+Hello, World! I am process  8 of 14 on node03.
+Hello, World! I am process  9 of 14 on node03.
+Hello, World! I am process 10 of 14 on node04.
+Hello, World! I am process 11 of 14 on node04.
+Hello, World! I am process 12 of 14 on node04.
+Hello, World! I am process 13 of 14 on node04.
+
+
+ringtest
+--------
+time for 1 loops = 0.243029 seconds (14 processes, 1 bytes)
+
+
+
+real	0m13.719s
+user	0m0.205s
+sys	0m0.119s

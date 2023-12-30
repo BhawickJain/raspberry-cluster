@@ -1,0 +1,14 @@
+#!/bin/bash
+#SBATCH --partition=all
+#SBATCH -N 4
+#SBATCH --ntasks-per-node=1
+#SBATCH -o result.out
+
+cd $SLURM_SUBMIT_DIR
+
+# Print the node that starts the process 
+echo "Master node: $(hostname)"
+
+# Run our program using OpenMPI.
+# OpenMPI will automatically discover resources from SLURM.
+time mpirun a.out

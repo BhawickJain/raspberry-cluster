@@ -1,0 +1,15 @@
+job name: Estimate PI
+date: Fri 29 Dec 18:00:54 GMT 2023
+
+
+pi estimate: 3.1415926535897500
+error: 0.0000000000000431
+process time (sec): 13.280787454
+nprocs: 14
+main node: node01
+
+
+
+real	1m58.627s
+user	0m0.165s
+sys	0m0.101s

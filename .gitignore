@@ -1,8 +1,10 @@
 *.bak
 *.swp
+*.swo
 .nix_local
 articles/*
 *secret*
 _old/*
 plugstack.conf.d
 .DS_Store
+/clusterfs/environments

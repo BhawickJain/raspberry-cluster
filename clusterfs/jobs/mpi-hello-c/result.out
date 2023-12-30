@@ -1,0 +1,9 @@
+Master node: node01
+Hello world from processor node01, rank 0 out of 4 processors
+Hello world from processor node03, rank 2 out of 4 processors
+Hello world from processor node04, rank 3 out of 4 processors
+Hello world from processor node02, rank 1 out of 4 processors
+
+real	0m1.049s
+user	0m0.076s
+sys	0m0.130s

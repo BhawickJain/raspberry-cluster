@@ -1,0 +1,11 @@
+#! /bin/bash
+#SBATCH -n 14
+#SBATCH --partition=all
+#SBATCH --time=0-00:02:00
+#SBATCH -o result.out
+#SBATCH --export=ALL
+
+cd $SLURM_SUBMIT_DIR
+
+time bash JOB
+

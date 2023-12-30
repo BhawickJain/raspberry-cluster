@@ -1,0 +1,23 @@
+#! /bin/bash
+
+# Job details and Environment
+JOB_NAME='Estimate PI'
+
+ENV='python-numpy-mpi4py'
+JOB_ENV_PATH="$CLUSTER_ENVS/$ENV"
+
+echo "job name: $JOB_NAME"
+echo "date: $(date)"
+echo -e '\n'
+
+# activate environment
+micromamba shell
+eval "$(micromamba shell hook --shell bash)"
+micromamba activate $JOB_ENV_PATH
+
+mpirun python calculate.py
+echo -e '\n'
+
+micromamba deactivate
+
+

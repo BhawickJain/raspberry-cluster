@@ -1,0 +1,53 @@
+#! /bin/bash
+
+# Job details and Environment
+JOB_NAME='Hello mpi4py'
+
+ENV='python-mpi4py'
+# see environments directory for options
+# you can create a new environment by modifying
+# - env.yaml
+# - create-env.sh
+# - ensuring environment names match
+
+JOB_ENV_PATH="$CLUSTER_ENVS/$ENV"
+
+echo "job name: $JOB_NAME"
+echo "date: $(date)"
+echo -e '\n'
+
+# activate environment
+micromamba shell
+eval "$(micromamba shell hook --shell bash)"
+micromamba activate $JOB_ENV_PATH
+
+## Perform Job ##
+
+# prove we are using the correct interpreter
+echo 'python interpreter path'
+echo '-----------------------'
+which python
+echo -e '\n'
+
+# show how processes are distributed  for a schduled number of nodes
+echo 'helloworld'
+echo '----------'
+mpirun python -m mpi4py.bench helloworld
+echo -e '\n'
+
+# note:
+#   mpi4py present in environment
+#   no explicit node number needed as openmpi
+#   can directly get that from SLURM
+
+# show the time taken for a signal to be send around all the scheduled nodes
+echo 'ringtest'
+echo '--------'
+mpirun python -m mpi4py.bench ringtest
+echo -e '\n'
+
+## Done ##
+
+micromamba deactivate
+
+
