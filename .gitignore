@@ -1,2 +1,8 @@
+*.bak
 *.swp
 .nix_local
+articles/*
+*secret*
+_old/*
+plugstack.conf.d
+.DS_Store
